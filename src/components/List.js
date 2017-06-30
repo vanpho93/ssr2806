@@ -23,7 +23,14 @@ export default class List extends Component {
         this.refs.txtDesc.value = ''; 
         this.refs.txtSubject.value = '';
         const task = new Task(subject, desc);
-        this.setState({ arrTask: [task].concat(this.state.arrTask) });
+        this.setState({ 
+            arrTask: [task].concat(this.state.arrTask),
+            isAdding: !this.state.isAdding
+        });
+    }
+
+    onToggleIsAdding() {
+        this.setState({ isAdding: !this.state.isAdding });
     }
 
     render() {
@@ -38,7 +45,7 @@ export default class List extends Component {
                                 <br /><br />
                             <button onClick={this.onAddTask.bind(this)}>Add</button>
                         </div>
-                    ) : <button>+</button>
+                    ) : <button onClick={this.onToggleIsAdding.bind(this)}>+</button>
                 }
                 { this.state.arrTask.map(e => <Note key={e.desc} task={e} />) }
             </div>
