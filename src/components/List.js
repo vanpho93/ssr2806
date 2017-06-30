@@ -44,6 +44,7 @@ export default class List extends Component {
                             <input type="text" placeholder="Desciption" ref="txtDesc" />
                                 <br /><br />
                             <button onClick={this.onAddTask.bind(this)}>Add</button>
+                            <button onClick={this.onToggleIsAdding.bind(this)}>Cancel</button>
                         </div>
                     ) : <button onClick={this.onToggleIsAdding.bind(this)}>+</button>
                 }
