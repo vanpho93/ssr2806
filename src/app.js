@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Note from './components/Note';
+import List from './components/List';
 
 ReactDOM.render(
-    <Note />,
+    <List />,
     document.getElementById('root') // eslint-disable-line
 );
