@@ -1,7 +1,8 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Note from './components/Note';
 
 ReactDOM.render(
-    <a href="Yahoo.com">Yahoo!</a>,
+    <Note />,
     document.getElementById('root') // eslint-disable-line
 );
