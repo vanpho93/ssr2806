@@ -34,20 +34,22 @@ export default class List extends Component {
     }
 
     render() {
+        const getForm = (isAddingState) => {
+            if (!isAddingState) return <button onClick={this.onToggleIsAdding.bind(this)}>+</button>;
+            return (
+                <div>
+                    <input type="text" placeholder="Subject" ref="txtSubject" />
+                        <br /><br />
+                    <input type="text" placeholder="Desciption" ref="txtDesc" />
+                        <br /><br />
+                    <button onClick={this.onAddTask.bind(this)}>Add</button>
+                    <button onClick={this.onToggleIsAdding.bind(this)}>Cancel</button>
+                </div>
+            );
+        };
         return (
             <div>
-                {  
-                    this.state.isAdding ? (
-                        <div>
-                            <input type="text" placeholder="Subject" ref="txtSubject" />
-                                <br /><br />
-                            <input type="text" placeholder="Desciption" ref="txtDesc" />
-                                <br /><br />
-                            <button onClick={this.onAddTask.bind(this)}>Add</button>
-                            <button onClick={this.onToggleIsAdding.bind(this)}>Cancel</button>
-                        </div>
-                    ) : <button onClick={this.onToggleIsAdding.bind(this)}>+</button>
-                }
+                { getForm(this.state.isAdding) }
                 { this.state.arrTask.map(e => <Note key={e.desc} task={e} />) }
             </div>
         );
