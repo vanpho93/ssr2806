@@ -9,9 +9,36 @@ const arrTask = [
 ];
 
 export default class List extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { 
+            arrTask,
+            idAdding: false 
+        };
+    }
+
+    onAddTask() {
+        const subject = this.refs.txtSubject.value;
+        const desc = this.refs.txtDesc.value;
+        this.refs.txtDesc.value = ''; 
+        this.refs.txtSubject.value = '';
+        const task = new Task(subject, desc);
+        this.setState({ arrTask: [task].concat(this.state.arrTask) });
+    }
+
     render() {
         return (
-            <div>{ arrTask.map(e => <Note key={e.desc} task={e} />) }</div>
+            <div>
+                <div>
+                    <input type="text" placeholder="Subject" ref="txtSubject" />
+                        <br /><br />
+                    <input type="text" placeholder="Desciption" ref="txtDesc" />
+                        <br /><br />
+                    <button onClick={this.onAddTask.bind(this)}>Add</button>
+                </div>
+                <button>+</button>
+                { this.state.arrTask.map(e => <Note key={e.desc} task={e} />) }
+            </div>
         );
     }
 }
