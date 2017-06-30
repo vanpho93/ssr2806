@@ -13,7 +13,7 @@ export default class List extends Component {
         super(props);
         this.state = { 
             arrTask,
-            idAdding: false 
+            isAdding: false 
         };
     }
 
@@ -29,14 +29,17 @@ export default class List extends Component {
     render() {
         return (
             <div>
-                <div>
-                    <input type="text" placeholder="Subject" ref="txtSubject" />
-                        <br /><br />
-                    <input type="text" placeholder="Desciption" ref="txtDesc" />
-                        <br /><br />
-                    <button onClick={this.onAddTask.bind(this)}>Add</button>
-                </div>
-                <button>+</button>
+                {  
+                    this.state.isAdding ? (
+                        <div>
+                            <input type="text" placeholder="Subject" ref="txtSubject" />
+                                <br /><br />
+                            <input type="text" placeholder="Desciption" ref="txtDesc" />
+                                <br /><br />
+                            <button onClick={this.onAddTask.bind(this)}>Add</button>
+                        </div>
+                    ) : <button>+</button>
+                }
                 { this.state.arrTask.map(e => <Note key={e.desc} task={e} />) }
             </div>
         );
