@@ -13,8 +13,11 @@ export default class List extends Component {
         super(props);
         this.state = { 
             arrTask,
-            isAdding: false 
+            isAdding: false,
+            subjectInput: 'aaa' 
         };
+
+        this.onAddTask = this.onAddTask.bind(this);
     }
 
     onAddTask() {
@@ -33,16 +36,26 @@ export default class List extends Component {
         this.setState({ isAdding: !this.state.isAdding });
     }
 
+    onChangeSubject(event) {
+        this.setState({ subjectInput: event.target.value });
+    }
+
     render() {
         const getForm = (isAddingState) => {
-            if (!isAddingState) return <button onClick={this.onToggleIsAdding.bind(this)}>+</button>;
+            const buttonJSX = <button onClick={this.onToggleIsAdding.bind(this)}>+</button>
+            if (!isAddingState) return buttonJSX;
             return (
                 <div>
-                    <input type="text" placeholder="Subject" ref="txtSubject" />
+                    <input 
+                        type="text" 
+                        placeholder="Subject" 
+                        value={this.state.subjectInput} 
+                        onChange={this.onChangeSubject.bind(this)}
+                    />
                         <br /><br />
                     <input type="text" placeholder="Desciption" ref="txtDesc" />
                         <br /><br />
-                    <button onClick={this.onAddTask.bind(this)}>Add</button>
+                    <button onClick={this.onAddTask}>Add</button>
                     <button onClick={this.onToggleIsAdding.bind(this)}>Cancel</button>
                 </div>
             );
