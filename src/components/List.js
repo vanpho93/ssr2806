@@ -24,11 +24,7 @@ export default class List extends Component {
         this.onChangeSubject = this.onChangeSubject.bind(this);
     }
 
-    onAddTask() {
-        const subject = this.refs.txtSubject.value;
-        const desc = this.refs.txtDesc.value;
-        this.refs.txtDesc.value = ''; 
-        this.refs.txtSubject.value = '';
+    onAddTask(subject, desc) {
         const task = new Task(subject, desc);
         this.setState({ 
             arrTask: [task].concat(this.state.arrTask),
@@ -53,7 +49,7 @@ export default class List extends Component {
         const getForm = (isAddingState) => {
             const buttonJSX = <button onClick={this.onToggleIsAdding}>+</button>;
             if (!isAddingState) return buttonJSX;
-            return <NoteForm />;
+            return <NoteForm handleAddTask={this.onAddTask} />;
         };
         return (
             <div>
