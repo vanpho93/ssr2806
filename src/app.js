@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Box from './com2/Box';
+import Box from './com3/Box';
 
 ReactDOM.render(
     <Box />,
