@@ -40,6 +40,11 @@ export default class List extends Component {
         this.setState({ subjectInput: event.target.value });
     }
 
+    removeNote(index) {
+        const newArrTask = this.state.arrTask.filter((e, i) => i !== index);
+        this.setState({ arrTask: newArrTask });
+    }
+
     render() {
         const getForm = (isAddingState) => {
             const buttonJSX = <button onClick={this.onToggleIsAdding.bind(this)}>+</button>
@@ -63,7 +68,13 @@ export default class List extends Component {
         return (
             <div>
                 { getForm(this.state.isAdding) }
-                { this.state.arrTask.map(e => <Note key={e.desc} task={e} />) }
+                { this.state.arrTask.map((e, i) => (
+                    <Note 
+                        key={e.desc} 
+                        task={e} 
+                        onRemove={this.removeNote.bind(this)} 
+                        index={i} 
+                    />)) }
             </div>
         );
     }
