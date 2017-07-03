@@ -22,6 +22,7 @@ export default class List extends Component {
         this.removeNote = this.removeNote.bind(this);
         this.onToggleIsAdding = this.onToggleIsAdding.bind(this);
         this.onChangeSubject = this.onChangeSubject.bind(this);
+        this.saveNote = this.saveNote.bind(this);
     }
 
     onAddTask(subject, desc) {
@@ -38,6 +39,14 @@ export default class List extends Component {
 
     onChangeSubject(event) {
         this.setState({ subjectInput: event.target.value });
+    }
+
+    saveNote(index, desc) {
+        const newArrTask = this.state.arrTask.map((e, i) => {
+            if (index !== i) return e;
+            return { subject: e.subject, desc };
+        });
+        this.setState({ arrTask: newArrTask });
     }
 
     removeNote(index) {
@@ -60,6 +69,7 @@ export default class List extends Component {
                         task={e} 
                         onRemove={this.removeNote} 
                         index={i} 
+                        onSaveNote={this.saveNote}
                     />)) }
             </div>
         );
