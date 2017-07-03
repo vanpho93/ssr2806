@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import List from './components/List';
+import Box from './com2/Box';
 
 ReactDOM.render(
-    <List />,
+    <Box />,
     document.getElementById('root') // eslint-disable-line
 );
