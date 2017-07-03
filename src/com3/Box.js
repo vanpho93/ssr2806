@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Info from './Info';
+import getWeather from '../api/getWeather';
 
 export default class Box extends Component {
 
@@ -8,10 +9,16 @@ export default class Box extends Component {
         this.setInfo = this.setInfo.bind(this);
         this.up = this.up.bind(this);
         this.down = this.down.bind(this);
+        this.call = this.call.bind(this);
     }
 
     setInfo(infoInstance) {
         this.info = infoInstance;
+    }
+
+    call() {
+        getWeather()
+        .then(resJSON => console.log(resJSON));
     }
 
     up() {
@@ -34,6 +41,7 @@ export default class Box extends Component {
             <div>
                 <button onClick={this.up}>+</button>
                 <button onClick={this.down}>-</button>
+                <button onClick={this.call}>Call</button>
                 <Info setInfo={this.setInfo} ref={info => { this.info2 = info; }} />
             </div>
         );
