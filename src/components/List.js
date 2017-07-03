@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Task from '../models/Task';
 import Note from './Note';
+import NoteForm from './NoteForm';
 
 const arrTask = [
     new Task('Cong viec', 'Viet bao cao cuoi thang'),
@@ -18,6 +19,9 @@ export default class List extends Component {
         };
 
         this.onAddTask = this.onAddTask.bind(this);
+        this.removeNote = this.removeNote.bind(this);
+        this.onToggleIsAdding = this.onToggleIsAdding.bind(this);
+        this.onChangeSubject = this.onChangeSubject.bind(this);
     }
 
     onAddTask() {
@@ -47,23 +51,9 @@ export default class List extends Component {
 
     render() {
         const getForm = (isAddingState) => {
-            const buttonJSX = <button onClick={this.onToggleIsAdding.bind(this)}>+</button>
+            const buttonJSX = <button onClick={this.onToggleIsAdding}>+</button>;
             if (!isAddingState) return buttonJSX;
-            return (
-                <div>
-                    <input 
-                        type="text" 
-                        placeholder="Subject" 
-                        value={this.state.subjectInput} 
-                        onChange={this.onChangeSubject.bind(this)}
-                    />
-                        <br /><br />
-                    <input type="text" placeholder="Desciption" ref="txtDesc" />
-                        <br /><br />
-                    <button onClick={this.onAddTask}>Add</button>
-                    <button onClick={this.onToggleIsAdding.bind(this)}>Cancel</button>
-                </div>
-            );
+            return <NoteForm />;
         };
         return (
             <div>
@@ -72,7 +62,7 @@ export default class List extends Component {
                     <Note 
                         key={e.desc} 
                         task={e} 
-                        onRemove={this.removeNote.bind(this)} 
+                        onRemove={this.removeNote} 
                         index={i} 
                     />)) }
             </div>
